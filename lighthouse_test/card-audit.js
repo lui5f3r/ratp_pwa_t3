@@ -2,7 +2,7 @@
 
 const Audit = require('lighthouse').Audit;
 
-const MAX_CARD_TIME = 2000;
+const MAX_PI_CALL_TIME = 3000;
 
 class LoadAudit extends Audit {
     static get meta() {
@@ -22,7 +22,7 @@ class LoadAudit extends Audit {
     static audit(artifacts) {
         const loadedTime = artifacts.TimeToCard;
 
-        const belowThreshold = loadedTime <= MAX_CARD_TIME;
+        const belowThreshold = loadedTime < MAX_PI_CALL_TIME;
 
         return {
             displayValue: loadedTime,

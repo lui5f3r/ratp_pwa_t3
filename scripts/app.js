@@ -6,6 +6,8 @@
         return;
     }
 
+    var firstApiCall = true;
+
     var app = {
 
         isLoading: true,
@@ -157,6 +159,10 @@
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     var response = JSON.parse(request.response);
+                    if (firstApiCall) {
+                        window.firstApiCallTime = performance.now();
+                        firstApiCall = false;
+                    }
                     var result = {};
                     result.key = key;
                     result.label = label;
